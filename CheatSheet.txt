@@ -1,0 +1,181 @@
+Content Models:
+
+<div> ist ein Block-Level Element, das heißt es braucht Platz für sich (schiebt alles was danach kommt in die nächste Zeile und beginnt bei einer neuen Zeile)
+
+<span> ist ein Inline Element, was in der selben Zeile mit anderen Elementen gerendert wird
+
+Inline kann in Block sein aber Block nicht in Inline
+
+CSS Attribute:
+
+- color = Farbe (wörter oder hexcode)
+- font-size = Schriftgröße (in pixel)
+- width = Breite (in pixel)
+- test-align = Textplatzierung (left, right, center)
+- font-weight = fett
+- font-style = Kursiv zb italic
+- opacity = Sichtbarkeit (0 bis 1)
+- background-color = Hintergrundfarbe
+- text-transform = Transformiert bestimmte Stellen der Wörter zb capitalize sorgt dafür dass anfangsbuchstaben groß werden
+- padding: innenabstand
+- border: Kante des Elements
+- margin: außenabstand 
+- box-sizing: border-box; => passt die content breite auf das padding und die borderdicke an um genau die gewünschte größe zu haben
+- overflow = wenn content größer als box dann nutzbar
+- background-image: url("") => wird im normalfall wiederholt um den ganzen container vollzumachen
+- background-repeat: kann man aussuchen wie das bild wiederholt wird (auch garnicht)
+- background-position: Position des Hintergrunds
+- clear: left; => kein Element darf links davon "schweben" und wird druntergeschoben
+
+kann in einer Seperaten DAtei.css reingeschrieben und eingebunden werden, oder in <head> mit <style>
+
+Jeder Browser hat eigene standard styles zb h1 und h2
+
+Element Selector: p, h1 usw
+Class Selector: .blue { color: blue; } <p class="blue">...</p>
+id Selector: #id {color: blue;} <p id="id">...</p>
+
+Kann man auch Gruppieren zb: div, .blue{color: blue;} => alle div und alle elemente mit class="blue" sind blau
+
+Kombinieren ist auch möglich zb: p.big {...} das heißt alle p Elemente der Klasse "big"
+
+Oder article > p {...} heißt alle p die in article drin sind <article><p>...</p></article> (muss direkt untergeordnet sein)
+Wenn article p {...} dann egal wie untergeordnet hauptsache untergeordnet
+
+Mehrere Klassen auch zuweisbar mit class="klasse1 klasse2"
+
+
+Pseudo-Class Selector:
+
+selector:pseudo-class {...}
+
+:link, :visited, :hover, :active, :nth-child(...)
+
+hover = wenn maus über das Element geht
+active = wenn drauf geklickt wird
+nth-child() = das n-te Element innerhalb des Elements
+link = ungeklickte Links
+visiter = bereits geklickte Links
+
+Style Placement:
+
+Direkt im Element, im Head als <style></style> oder als <link rel="stylesheet" href="style.css"> im head => externe sind besser 
+wenn man mehrere Seiten hat
+
+Conflict REsolution:
+
+Die letzte Deklaration geht durch, da HTML top to bottom ist
+Ansonsten mischen sie sich wenn die Deklarationen anders sind
+
+bsp: p {color: blue; font-size: 130%} und dann p {color: black;} also =>  p {color: black; font-size: 130%}
+
+Inheritance:
+
+Wenn etwas auf ein Eltern Element angewendet wird, wird es auch an die Kinder angewendet
+
+Specificity:
+
+style="" | ID | Class,pseudoclass,attribute | # of Element
+
+!important wird bevorzugt
+
+Styling Text:
+
+font-family: Times New Roman, serif, Georgia
+falls der Webbrowser nicht die eine bestimmte Schriftart installiert hat kann man mehrere Schriftarten zuweisen
+
+Farben sind mit hexcode anzugeben
+
+16px ist standard größe für Text
+Mit % kann man textgrößen auch ändern
+2em kann das ganze multiplizieren (in dem Fall 2)
+oder dividieren mit .5 oder anderen zahlen zwischen 0-1
+
+------------------------------------------------------------------Box Model--------------------------------------------------------------------------
+
+body hat standard margin und padding im browser, muss man auf 0 setzen um es zu entgehen
+
+padding: top right bottom left;
+
+box-sizing: border-box; => passt die content breite auf das padding und die borderdicke an um genau die gewünschte größe zu haben
+
+* {..} wendet das CSS Rule für ALLES an
+
+Cumulative Margins:
+
+Abstände von Boxen nebeneinander addieren einfach zusammen, die die übereinander sind wird der größere Abstand genommen
+
+background-property: siehe oben
+
+background: url("") no-repeat right center; => alle parameter direkt eingebbar
+
+Position Elements by Floating:
+
+Nimmt Elemente aus der eigentlichen Struktur raus
+clear: left; => kein Element darf links davon "schweben" und wird druntergeschoben
+
+Relative and Absolute Element Positioning:
+
+Relative: p {position: relative; top: 50px; left: 50px;} => schiebt das Element 50px nach rechts und 50px nach unten (man liest from top und from left)
+außerdem ändert sich am document flow nichts
+
+Absolute: p {position: absolute;} => wird aus dem document flow rausgenommen
+wenn übergeordneter container relative dann passt es sich dem an
+
+Alle elemente static außer html das ist relative
+
+---------------------------------------------------------------RESPONSIVE---------------------------------------------------------------------------
+
+Media Queries:
+
+@media (max-width: 767px) {
+    p {
+        color: blue;
+    }
+}
+
+weitere:
+
+min-width
+orientation
+screen
+print
+
+kombinierbar mit logischen operatoren wie and, or(,) usw
+
+erst base style also das was immer gelten soll und danach kommen media
+unterschiedliche media bedingungen sollten sich was bildschirmbreite zb angeht nicht überschneiden!
+
+Responsive Designs:
+
+Seiten layout muss sich der Bildschirmgröße anpassen können
+
+Serverside Websites erkennen das jeweilige Gerät und geben dementsprechend eine mobile oder desktop version zurück ist aber problematisch
+
+12 Spaltige grid responsive layout
+
+<meta name="viewport" content="width=device-width, initial-scale=1"> damit handys nicht rauszoomen
+
+% Breite nutzen ist immer gut
+
+-------------------------------------------------------Twitter Bootstrap-----------------------------------------------------------------------------
+
+Ist ein framework mit basic styles für mobile first webseiten
+
+benötigt jquery muss man dazu herunterladen und installieren
+
+einfach entpacken und benutzen
+
+Bootstrap Grid System:
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">Col 1</div>
+        ...
+    </div>
+</div>
+
+=> Grid system was ziemlich gut ist, wie als würde ich eine CMS verwenden
+
+col-SIZE-SPAN => SIZE für Bildschirmgröße und SPAN für wie viele Spalten es nehmen soll (1 - 12) 
+
